@@ -109,14 +109,22 @@ class PingdomApi {
    * @return array
    *   An indexed array of checks.
    */
-  public function getChecks($limit = NULL, $offset = NULL) {
-    $parameters = array();
+  public function getChecks($limit = NULL, $offset = NULL, $include_tags = false, $tags = []) {
+    $parameters = [
+	    'include_tags'	=>	$include_tags
+    ];
     if (!empty($limit)) {
       $parameters['limit'] = $limit;
       if (!empty($offset)) {
         $parameters['offset'] = $offset;
       }
     }
+    
+    if(count($tags))
+    {
+	    $parameters['tags'] = implode(",", $tags);
+    }
+    
     $data = $this->request('GET', 'checks', $parameters);
     return $data->checks;
   }
