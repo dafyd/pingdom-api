@@ -105,6 +105,10 @@ class PingdomApi {
    *   is 25000).
    * @param int $offset
    *   Offset for listing (requires limit).
+   * @param bool $include_tags
+   *   Return an array of each check's tags.
+   * @param array $tags
+   *   Array of tags to filter checks by.
    *
    * @return array
    *   An indexed array of checks.
